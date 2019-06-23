@@ -1,0 +1,8 @@
+version: '3'
+services:
+  mecab-python3-lambda:
+    build: .
+    container_name: mecab_python3_lambda
+    volumes:
+      - ./function:/var/task
+    command: /bin/sh -c 'pip3 install mecab-python3 -t $${LAMBDA_ROOT_DIR}'

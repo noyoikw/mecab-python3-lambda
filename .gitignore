@@ -1,0 +1,5 @@
+.DS_Store
+.mecab
+function/**/*
+!lambda_function.py
+*.zip
