@@ -1,6 +1,6 @@
 # MeCab + Python3 + Lambda
 ## Usage
-1. Build MeCab in docker image of Lambda (lambci/lambda:build-python3.7).
+1. Build MeCab in docker image of Lambda (lambci/lambda:build-python3.8).
     ```
     $ docker-compose up
     ```

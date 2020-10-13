@@ -1,7 +1,7 @@
 version: '3'
 services:
   mecab-python3-lambda:
-    image: lambci/lambda:build-python3.7
+    image: lambci/lambda:build-python3.8
     environment:
       - AWS_DEFAULT_REGION=ap-northeast-1
       - LAMBDA_PACKAGE_DIR=/var/task
