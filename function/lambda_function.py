@@ -2,14 +2,20 @@
 import json
 import os
 import ctypes
-libdir = os.path.join(os.getcwd(), '/var/task/.mecab/lib')
-libmecab = ctypes.cdll.LoadLibrary(os.path.join(libdir, 'libmecab.so'))
+
+mecabdir = os.path.join(os.getcwd(), '/var/task/.mecab')
+libmecab = ctypes.cdll.LoadLibrary(os.path.join(mecabdir, 'lib/libmecab.so'))
 
 import MeCab
-tagger = MeCab.Tagger ('-Ochasen')
+
+output_format_type = 'chasen'
+dicdir = os.path.join(mecabdir, 'lib/mecab/dic/ipadic')
+rcfile = os.path.join(mecabdir, 'etc/mecabrc')
+
+tagger = MeCab.Tagger('-O{} -d{} -r{}'.format(output_format_type, dicdir, rcfile))
 
 def lambda_handler(event, context):
-    req_body = json.loads(event['body'])    
+    req_body = json.loads(event['body'])
     res_body = {
       'morphemes': tagger.parse(req_body['text'])
     }
@@ -21,5 +27,3 @@ def lambda_handler(event, context):
         },
         'body': json.dumps(res_body)
     }
-
-
